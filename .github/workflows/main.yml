@@ -61,7 +61,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           body_path: SNAPSHOT_HASH
-          target_commitish: v3-${{env.SNAPSHOT_HASH}}
           tag_name: android-v3-${{env.SNAPSHOT_HASH}}
           files: |
             ./*.so
@@ -122,7 +121,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           body_path: SNAPSHOT_HASH
-          target_commitish: v3-${{env.SNAPSHOT_HASH}}
           tag_name: ios-v3-${{env.SNAPSHOT_HASH}}
           files: |
             ./Flutter
