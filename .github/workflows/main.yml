@@ -60,11 +60,12 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-        token: ${{ secrets.reflutter-release }}
           target_commitish: v3-${{env.SNAPSHOT_HASH}}
           tag_name: android-v3-${{env.SNAPSHOT_HASH}}
           files: |
             ./*.so
+        env:
+          GITHUB_TOKEN: ${{ secrets.G2ITHUB_TOKEN }}
 
   build-ios:
     runs-on: macos-10.15
@@ -119,8 +120,9 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          token: ${{ secrets.reflutter-release }}
           target_commitish: v3-${{env.SNAPSHOT_HASH}}
           tag_name: ios-v3-${{env.SNAPSHOT_HASH}}
           files: |
             ./Flutter
+        env:
+          GITHUB_TOKEN: ${{ secrets.G2ITHUB_TOKEN }}
