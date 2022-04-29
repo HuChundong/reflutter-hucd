@@ -59,31 +59,31 @@ def networkLib():
     global libAppArm64,libAppArm,libAppX64,libAppX86,libios
     if len(libios[1]) != 0:
        try:
-        urlretrieve("https://github.com/HuChundong/reFlutter/releases/download/ios-v3-"+libios[1]+"/Flutter", "Flutter")
+        urlretrieve("https://github.com/HuChundong/reflutter-hucd/releases/download/ios-v3-"+libios[1]+"/Flutter", "Flutter")
        except:
         libios='',''
         notexcept("Flutter")
     if len(libAppArm64[1]) != 0:
        try: 
-        urlretrieve("https://github.com/HuChundong/reFlutter/releases/download/android-v3-"+libAppArm64[1]+"/libflutter_arm64.so", "libflutter_arm64.so")
+        urlretrieve("https://github.com/HuChundong/reflutter-hucd/releases/download/android-v3-"+libAppArm64[1]+"/libflutter_arm64.so", "libflutter_arm64.so")
        except:
         libAppArm64='',''
         notexcept("libflutter_arm64.so")
     if len(libAppArm[1]) != 0:
        try:
-        urlretrieve("https://github.com/HuChundong/reFlutter/releases/download/android-v3-"+libAppArm[1]+"/libflutter_arm.so", "libflutter_arm.so")
+        urlretrieve("https://github.com/HuChundong/reflutter-hucd/releases/download/android-v3-"+libAppArm[1]+"/libflutter_arm.so", "libflutter_arm.so")
        except:
         libAppArm='',''
         notexcept("libflutter_arm.so")
     if len(libAppX64[1]) != 0:
        try:
-        urlretrieve("https://github.com/HuChundong/reFlutter/releases/download/android-v3-"+libAppX64[1]+"/libflutter_x64.so", "libflutter_x64.so")
+        urlretrieve("https://github.com/HuChundong/reflutter-hucd/releases/download/android-v3-"+libAppX64[1]+"/libflutter_x64.so", "libflutter_x64.so")
        except:
         libAppX64='',''
         notexcept("libflutter_x64.so")
     if len(libAppX86[1]) != 0:
        try:
-        urlretrieve("https://github.com/HuChundong/reFlutter/releases/download/android-v3-"+libAppX86[1]+"/libflutter_x86.so", "libflutter_x86.so")
+        urlretrieve("https://github.com/HuChundong/reflutter-hucd/releases/download/android-v3-"+libAppX86[1]+"/libflutter_x86.so", "libflutter_x86.so")
        except:
         libAppX86='',''
         notexcept("libflutter_x86.so")
@@ -245,7 +245,7 @@ def checkHash():
     if libappHash=="":
         print("\nIs this really a Flutter app? \nThere was no libapp.so (Android) or App (iOS) found in the package.\n\n Make sure there is arm64-v8a/libapp.so or App.framework/App file in the package. If flutter library name differs you need to rename it properly before patching.\n")
         sys.exit()
-    resp = urlopen('https://raw.githubusercontent.com/HuChundong/reFlutter/main/enginehash.csv').read().decode('utf-8')
+    resp = urlopen('https://raw.githubusercontent.com/HuChundong/reflutter-hucd/main/enginehash.csv').read().decode('utf-8')
     if libappHash not in resp:
         shutil.rmtree('libappTmp')
         print("\n Engine SnapshotHash: "+libappHash+"\n\n This engine is currently not supported.\n Most likely this flutter application uses the Debug version engine which you need to build manually using Docker at the moment.\n More details: https://github.com/HuChundong/reFlutter\n")
@@ -295,7 +295,7 @@ def main():
     libappHash = sys.argv[1]
 
   if not os.path.exists("enginehash.csv"):
-    urlretrieve("https://raw.githubusercontent.com/HuChundong/reFlutter/main/enginehash.csv", "enginehash.csv")
+    urlretrieve("https://raw.githubusercontent.com/HuChundong/reflutter-hucd/main/enginehash.csv", "enginehash.csv")
 
   with open("enginehash.csv") as f_obj:
    replaceFileText('src/src/flutter/BUILD.gn','  if (is_android) {\n    public_deps +=\n        [ "//flutter/shell/platform/android:flutter_shell_native_unittests" ]\n  }','')
