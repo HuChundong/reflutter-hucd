@@ -213,7 +213,7 @@ def checkHash():
     if libappHash=="":
         print("\nIs this really a Flutter app? \nThere was no libapp.so (Android) or App (iOS) found in the package.\n\n Make sure there is arm64-v8a/libapp.so or App.framework/App file in the package. If flutter library name differs you need to rename it properly before patching.\n")
         sys.exit()
-    resp = urlopen('https://raw.githubusercontent.com/HuChundong/reflutter-hucd/main/enginehash.csv').read().decode('utf-8')
+    resp = urlopen('https://raw.githubusercontent.com/Impact-I/reFlutter/main/enginehash.csv').read().decode('utf-8')
     if libappHash not in resp:
         shutil.rmtree('libappTmp')
         print("\n Engine SnapshotHash: "+libappHash+"\n\n This engine is currently not supported.\n Most likely this flutter application uses the Debug version engine which you need to build manually using Docker at the moment.\n More details: https://github.com/HuChundong/reFlutter\n")
@@ -263,7 +263,7 @@ def main():
     libappHash = sys.argv[1]
 
   if not os.path.exists("enginehash.csv"):
-    urlretrieve("https://raw.githubusercontent.com/HuChundong/reflutter-hucd/main/enginehash.csv", "enginehash.csv")
+    urlretrieve("https://raw.githubusercontent.com/Impact-I/reFlutter/main/enginehash.csv", "enginehash.csv")
 
   with open("enginehash.csv") as f_obj:
    replaceFileText('src/src/flutter/BUILD.gn','  if (is_android) {\n    public_deps +=\n        [ "//flutter/shell/platform/android:flutter_shell_native_unittests" ]\n  }','')
